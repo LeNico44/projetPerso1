@@ -10,8 +10,8 @@
 
 		<h2>Enregistrer un produit</h2>
 
-		<form method="post" action="produit">
-			<div class="form-group">
+		<form name="formulaire" method="post" action="produit">
+			<div class="form-group" onclick="clickradio()">
 				<div class="form-check">
 					<input class="form-check-input" type="radio" name="radioProduit" id="radio1" value="prodemb" checked>
 					<label class="form-check-label" for="radio1">Produit emballé</label>
@@ -21,6 +21,30 @@
 					<label class="form-check-label" for="radio2"> Produit vrac </label>
 				</div>
 			</div>
+			<script type="text/javascript">
+				var valeur = 'prodemb';
+				function clickradio(){
+					valeur = 'prodemb';
+					for (i=0; i<document.formulaire.radioProduit.length; i++) {
+						if (document.formulaire.radioProduit[i].checked) {
+							valeur = document.formulaire.radioProduit[i].value;
+							document.getElementById("valeur").innerHTML = valeur ;
+						}
+					}
+					if(valeur == 'prodemb'){
+						document.formulaire.prix.disabled=false;
+						document.formulaire.prixkilo.disabled=true;
+						document.formulaire.prixkilo.value="";
+
+					}else{
+						document.formulaire.prixkilo.disabled=false;
+						document.formulaire.prix.disabled=true;
+						document.formulaire.prix.value="";
+					}
+				}
+	
+			</script>
+			<p id="valeur"><script type="text/javascript">document.getElementById("valeur").innerHTML = valeur ;</script></p>
 			<div class="form-group">
 				<label for="libelle">Nom du produit</label> <input type="text"
 					class="form-control" id="libelle" name="libelle"
@@ -29,20 +53,17 @@
 
 			<div class="form-group">
 				<label for="prixkilo">Prix au kilo</label> 
-				<input type="number" class="form-control" id="prixkilo" name="prixkilo" placeholder="0,00 € / kg" 
-					<c:if test = "{}">
-						<c:out value="disabled"/>
-					</c:if>>
+				<input type="number" class="form-control" id="prixkilo" name="prixkilo" placeholder="0,00 € / kg" disabled>
 			</div>
-            <p>Bla bla bla !!!</p>
+			
 			<div class="form-group">
 				<label for="poids">Poids en kilo</label> <input type="number"
 					class="form-control" id="poids" name="poids" placeholder="0,00 kg">
 			</div>
 
 			<div class="form-group">
-				<label for="prixkilo">Prix</label> <input type="number"
-					class="form-control" id="prix" name="prix" placeholder="0,00 €">
+				<label for="prix">Prix</label>
+				<input type="number" class="form-control" id="prix" name="prix" placeholder="0,00 €" >
 			</div>
 
 			<div class="form-group">
