@@ -34,7 +34,7 @@
 						<c:out value="disabled"/>
 					</c:if>>
 			</div>
-
+            <p>Bla bla bla !!!</p>
 			<div class="form-group">
 				<label for="poids">Poids en kilo</label> <input type="number"
 					class="form-control" id="poids" name="poids" placeholder="0,00 kg">
