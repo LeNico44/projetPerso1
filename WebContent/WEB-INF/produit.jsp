@@ -21,30 +21,7 @@
 					<label class="form-check-label" for="radio2"> Produit vrac </label>
 				</div>
 			</div>
-			<script type="text/javascript">
-				var valeur = 'prodemb';
-				function clickradio(){
-					valeur = 'prodemb';
-					for (i=0; i<document.formulaire.radioProduit.length; i++) {
-						if (document.formulaire.radioProduit[i].checked) {
-							valeur = document.formulaire.radioProduit[i].value;
-							document.getElementById("valeur").innerHTML = valeur ;
-						}
-					}
-					if(valeur == 'prodemb'){
-						document.formulaire.prix.disabled=false;
-						document.formulaire.prixkilo.disabled=true;
-						document.formulaire.prixkilo.value="";
-
-					}else{
-						document.formulaire.prixkilo.disabled=false;
-						document.formulaire.prix.disabled=true;
-						document.formulaire.prix.value="";
-					}
-				}
 	
-			</script>
-			<p id="valeur"><script type="text/javascript">document.getElementById("valeur").innerHTML = valeur ;</script></p>
 			<div class="form-group">
 				<label for="libelle">Nom du produit</label> <input type="text"
 					class="form-control" id="libelle" name="libelle"
