@@ -22,6 +22,7 @@ import fr.dezaxe.pp1.others.Constante;
 @WebServlet("/Produit")
 public class Produit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String URL = "url";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -40,7 +41,7 @@ public class Produit extends HttpServlet {
 		request.setAttribute("option", option);
 		
 		//"url" r�cup�re l'url en cours et compare � la constante pour l'attibution de la classe "active" du lien du menu. 
-		request.setAttribute("url", request.getRequestURL());
+		request.setAttribute(URL, request.getRequestURL());
 		request.setAttribute("urlProduit", Constante.urlProduit);
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/produit.jsp").forward(request, response);
@@ -59,12 +60,12 @@ public class Produit extends HttpServlet {
 		EntityManager em = emf.createEntityManager();
 		
 		//"url"ééééç  r�cup�re l'url en cours et compare � la constante pour l'attibution de la classe "active" du lien du menu. 
-		request.setAttribute("url", request.getRequestURL());
+		request.setAttribute(URL, request.getRequestURL());
 		request.setAttribute("urlProduit", Constante.urlProduit);
 		
 		IProduit produit;
 		
-		if(option.equals("prodemb")) {
+		if("option".equals("prodemb")) {
 			produit = Loader.creerProduitEmballe();
 		}else {
 			produit = Loader.creerProduitVrac();

@@ -1,7 +1,3 @@
-/*
- fonction qui permet de désactiver l'input inutile en fonction du bouton radio coché !
- */
-
 var valeur = 'prodemb';
 
 function clickradio(){
@@ -9,6 +5,7 @@ function clickradio(){
 	for (i=0; i<document.formulaire.radioProduit.length; i++) {
 		if (document.formulaire.radioProduit[i].checked) {
 			valeur = document.formulaire.radioProduit[i].value;
+			document.getElementById("valeur").innerHTML = valeur ;
 		}
 	}
 	if(valeur == 'prodemb'){
@@ -22,3 +19,7 @@ function clickradio(){
 		document.formulaire.prix.value="";
 	}
 }
+
+document.getElementById("valeur").innerHTML = valeur ;
+
+alert('tout est ok');

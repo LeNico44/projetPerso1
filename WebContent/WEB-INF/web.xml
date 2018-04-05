@@ -6,7 +6,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Accueil</servlet-name>
-    <url-pattern>/index</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Produit</servlet-name>
