@@ -28,7 +28,6 @@
 					for (i=0; i<document.formulaire.radioProduit.length; i++) {
 						if (document.formulaire.radioProduit[i].checked) {
 							valeur = document.formulaire.radioProduit[i].value;
-							document.getElementById("valeur").innerHTML = valeur ;
 						}
 					}
 					if(valeur == 'prodemb'){
@@ -44,7 +43,7 @@
 				}
 	
 			</script>
-			<p id="valeur"><script type="text/javascript">document.getElementById("valeur").innerHTML = valeur ;</script></p>
+
 			<div class="form-group">
 				<label for="libelle">Nom du produit</label> <input type="text"
 					class="form-control" id="libelle" name="libelle"
