@@ -21,6 +21,7 @@
 					<label class="form-check-label" for="radio2"> Produit vrac </label>
 				</div>
 			</div>
+
 			<script type="text/javascript">
 				var valeur = 'prodemb';
 				function clickradio(){
@@ -43,7 +44,7 @@
 				}
 	
 			</script>
-
+      
 			<div class="form-group">
 				<label for="libelle">Nom du produit</label> <input type="text"
 					class="form-control" id="libelle" name="libelle"
