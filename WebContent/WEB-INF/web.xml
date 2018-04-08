@@ -10,11 +10,19 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>Produit</servlet-name>
-    <servlet-class>fr.dezaxe.pp1.servlets.Produit</servlet-class>
+    <servlet-class>fr.dezaxe.pp1.servlets.AffichageProduit</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Produit</servlet-name>
     <url-pattern>/produit</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CreerProduit</servlet-name>
+    <servlet-class>fr.dezaxe.pp1.servlets.CreationProduit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreerProduit</servlet-name>
+    <url-pattern>/creerproduit</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>

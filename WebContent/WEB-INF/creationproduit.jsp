@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <!-- taglibs.jsp -->
 <c:import url="includes/header.jsp" />
-<title>Produit</title>
+<title>Créer un produit</title>
 </head>
 <body>
 	<c:import url="includes/menu.jsp" />
@@ -46,24 +46,24 @@
 			</script>
       
 			<div class="form-group">
-				<label for="libelle">Nom du produit</label> <input type="text"
-					class="form-control" id="libelle" name="libelle"
-					placeholder="Produit">
+				<label for="libelle">Nom du produit</label> 
+				<input type="text" class="form-control" id="libelle" name="libelle" placeholder="Produit">
+				<span class="erreur">${form.erreurs['libelle']}</span>
 			</div>
 
 			<div class="form-group">
 				<label for="prixkilo">Prix au kilo</label> 
-				<input type="number" class="form-control" id="prixkilo" name="prixkilo" placeholder="0,00 € / kg" disabled>
+				<input type="number" step="0.01" class="form-control" id="prixkilo" name="prixkilo" placeholder="0,00 € / kg" disabled>
 			</div>
 			
 			<div class="form-group">
-				<label for="poids">Poids en kilo</label> <input type="number"
-					class="form-control" id="poids" name="poids" placeholder="0,00 kg">
+				<label for="poids">Poids en kilo</label>
+				<input type="number" step="0.001" class="form-control" id="poids" name="poids" placeholder="0,000 kg">
 			</div>
 
 			<div class="form-group">
 				<label for="prix">Prix</label>
-				<input type="number" class="form-control" id="prix" name="prix" placeholder="0,00 €" >
+				<input type="number" step="0.01" class="form-control" id="prix" name="prix" placeholder="0,00 €" >
 			</div>
 
 			<div class="form-group">

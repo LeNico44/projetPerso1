@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.internal.NotNull;
+
 import fr.dezaxe.pp1.enums.Magasin;
 
 /**
@@ -25,6 +27,8 @@ abstract class Produit implements IProduit {
 	@Column(name="a_id")
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int id;
+	@Column(name="coucou", nullable=false)
+	@NotNull
 	private String libelle;
 	protected double prix;
 	private double prixKilo;

@@ -7,23 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.dezaxe.pp1.beans.IProduit;
-import fr.dezaxe.pp1.beans.Loader;
-import fr.dezaxe.pp1.enums.Magasin;
-import fr.dezaxe.pp1.others.Constante;
-
 /**
- * Servlet implementation class Index
+ * Servlet implementation class AffichageProduit
  */
-@WebServlet(description = "Page d'accueil de mon premier projet personel en J2E !")
-public class Index extends HttpServlet {
+@WebServlet("/AffichageProduit")
+public class AffichageProduit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String VUE = "/WEB-INF/index.jsp";   
-	
+	private static final String VUE = "/WEB-INF/affichageproduit.jsp";
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index() {
+    public AffichageProduit() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,9 +27,9 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//"url" r�cup�re l'url en cours et compare � la constante pour l'attibution de la classe "active" du lien du menu. 
-		request.setAttribute("url", request.getRequestURL());
-		request.setAttribute("urlIndex", Constante.URL_INDEX);
+		
+		//Affichage des produits
+
 		
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}

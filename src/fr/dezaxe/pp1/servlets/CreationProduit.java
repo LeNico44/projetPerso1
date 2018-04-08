@@ -14,20 +14,24 @@ import javax.servlet.http.HttpServletResponse;
 import fr.dezaxe.pp1.beans.IProduit;
 import fr.dezaxe.pp1.beans.Loader;
 import fr.dezaxe.pp1.enums.Magasin;
+import fr.dezaxe.pp1.forms.CreationProduitForm;
 import fr.dezaxe.pp1.others.Constante;
 
 /**
  * Servlet implementation class Produit
  */
 @WebServlet("/Produit")
-public class Produit extends HttpServlet {
+public class CreationProduit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String URL = "url";
+	private static final String ATTR_ENUM_MAGASINS = "enumMagasins";
+	private static final String URL_PRODUIT = "urlProduit";
+	private static final String VUE = "/WEB-INF/creationproduit.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Produit() {
+    public CreationProduit() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,51 +40,41 @@ public class Produit extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("enumMagasins", Magasin.values());
-		String option = request.getParameter("radioProduit");
-		request.setAttribute("option", option);
+		request.setAttribute(ATTR_ENUM_MAGASINS, Magasin.values());
 		
-		//"url" r�cup�re l'url en cours et compare � la constante pour l'attibution de la classe "active" du lien du menu. 
+		//"url" récupère l'url en cours et compare � la constante pour l'attibution de la classe "active" du lien du menu. 
 		request.setAttribute(URL, request.getRequestURL());
-		request.setAttribute("urlProduit", Constante.urlProduit);
+		request.setAttribute(URL_PRODUIT, Constante.URL_PRODUIT);
 		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/produit.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("enumMagasins", Magasin.values());
-		String option = request.getParameter("radioProduit");
-		request.setAttribute("option", option);
+		request.setAttribute(ATTR_ENUM_MAGASINS, Magasin.values());
 		
-		// Cr�ation du manager factory pour la base de donn�es "projet_perso_1"  nomm� ici "pp1".
+		// Création du manager factory pour la base de données "projet_perso_1"  nommé ici "pp1".
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pp1");
 		EntityManager em = emf.createEntityManager();
 		
-		//"url"ééééç  r�cup�re l'url en cours et compare � la constante pour l'attibution de la classe "active" du lien du menu. 
+		//"url" récupère l'url en cours et compare à la constante pour l'attibution de la classe "active" du lien du menu. 
 		request.setAttribute(URL, request.getRequestURL());
-		request.setAttribute("urlProduit", Constante.urlProduit);
+		request.setAttribute("urlProduit", Constante.URL_PRODUIT);
 		
-		IProduit produit;
+		// appelle à Cre&tionProduitForm
+		/*Préparation de l'objet form*/
+		CreationProduitForm form = new CreationProduitForm();
 		
-		if("option".equals("prodemb")) {
-			produit = Loader.creerProduitEmballe();
-		}else {
-			produit = Loader.creerProduitVrac();
-		}
-		
-		produit.setLibelle(request.getParameter("libelle"));
-		produit.setMagasin(Magasin.parseMagasin(request.getParameter("magasin")));
+		/* Traitement de la requête et récupération du bean en résultant */
+		IProduit produit = form.creerProduit(request);
 		
 		em.getTransaction().begin();
 		em.persist(produit);
 		em.getTransaction().commit();
-			
-		
-		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/produit.jsp").forward(request, response);
+
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 
 }
