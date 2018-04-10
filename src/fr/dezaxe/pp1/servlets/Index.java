@@ -45,7 +45,7 @@ public class Index extends HttpServlet {
 	}
 	
 	private void menuActif(HttpServletRequest request) {
-		String indexActive = "active";
+		String indexActive = Constante.ACTIVE;
 		request.setAttribute("indexActive", indexActive);
 	}
 

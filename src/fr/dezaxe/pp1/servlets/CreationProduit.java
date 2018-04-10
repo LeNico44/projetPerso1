@@ -23,9 +23,7 @@ import fr.dezaxe.pp1.others.Constante;
 @WebServlet("/Produit")
 public class CreationProduit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String URL = "url";
 	private static final String ATTR_ENUM_MAGASINS = "enumMagasins";
-	private static final String URL_PRODUIT = "urlProduit";
 	private static final String VUE = "/WEB-INF/creationproduit.jsp";
        
     /**
@@ -74,7 +72,7 @@ public class CreationProduit extends HttpServlet {
 	}
 	
 	private void menuActif(HttpServletRequest request) {
-		String creerProduitActive = "active";
+		String creerProduitActive = Constante.ACTIVE;
 		request.setAttribute("creerProduitActive", creerProduitActive);
 	}
 

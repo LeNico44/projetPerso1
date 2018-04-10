@@ -10,7 +10,7 @@
 
 		<h2>Enregistrer un produit</h2>
 
-		<form name="formulaire" method="post" action="produit">
+		<form name="formulaire" method="post">
 			<div class="form-group" onclick="clickradio()">
 				<div class="form-check">
 					<input class="form-check-input" type="radio" name="radioProduit" id="radio1" value="prodemb" checked>

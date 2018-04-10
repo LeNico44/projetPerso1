@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.dezaxe.pp1.others.Constante;
+
 /**
  * Servlet implementation class AffichageProduit
  */
@@ -42,7 +44,7 @@ public class AffichageProduit extends HttpServlet {
 	}
 	
 	private void menuActif(HttpServletRequest request) {
-		String afficherProduitActive = "active";
+		String afficherProduitActive = Constante.ACTIVE;
 		request.setAttribute("afficherProduitActive", afficherProduitActive);
 	}
 
