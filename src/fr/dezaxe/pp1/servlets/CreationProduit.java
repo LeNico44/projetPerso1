@@ -42,9 +42,7 @@ public class CreationProduit extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute(ATTR_ENUM_MAGASINS, Magasin.values());
 		
-		//"url" récupère l'url en cours et compare � la constante pour l'attibution de la classe "active" du lien du menu. 
-		request.setAttribute(URL, request.getRequestURL());
-		request.setAttribute(URL_PRODUIT, Constante.URL_PRODUIT);
+		menuActif(request);
 		
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
@@ -59,9 +57,7 @@ public class CreationProduit extends HttpServlet {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pp1");
 		EntityManager em = emf.createEntityManager();
 		
-		//"url" récupère l'url en cours et compare à la constante pour l'attibution de la classe "active" du lien du menu. 
-		request.setAttribute(URL, request.getRequestURL());
-		request.setAttribute("urlProduit", Constante.URL_PRODUIT);
+		menuActif(request);
 		
 		// appelle à Cre&tionProduitForm
 		/*Préparation de l'objet form*/
@@ -75,6 +71,11 @@ public class CreationProduit extends HttpServlet {
 		em.getTransaction().commit();
 
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+	}
+	
+	private void menuActif(HttpServletRequest request) {
+		String creerProduitActive = "active";
+		request.setAttribute("creerProduitActive", creerProduitActive);
 	}
 
 }

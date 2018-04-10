@@ -27,7 +27,7 @@ public class AffichageProduit extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		menuActif(request);
 		//Affichage des produits
 
 		
@@ -39,6 +39,11 @@ public class AffichageProduit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	}
+	
+	private void menuActif(HttpServletRequest request) {
+		String afficherProduitActive = "active";
+		request.setAttribute("afficherProduitActive", afficherProduitActive);
 	}
 
 }

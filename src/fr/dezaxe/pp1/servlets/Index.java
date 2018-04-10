@@ -32,9 +32,7 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//"url" r�cup�re l'url en cours et compare � la constante pour l'attibution de la classe "active" du lien du menu. 
-		request.setAttribute("url", request.getRequestURL());
-		request.setAttribute("urlIndex", Constante.URL_INDEX);
+		menuActif(request);
 		
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
@@ -45,5 +43,12 @@ public class Index extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
+	
+	private void menuActif(HttpServletRequest request) {
+		String indexActive = "active";
+		request.setAttribute("indexActive", indexActive);
+	}
 
 }
+
+
