@@ -12,11 +12,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="produit")
-class ProduitEmballe extends Produit implements IProduitEmballe{
+public class ProduitEmballe extends Produit implements IProduitEmballe{
 
-	/**
-	 * 
-	 */
 	public ProduitEmballe() {
 		// TODO Auto-generated constructor stub
 	}
@@ -24,7 +21,16 @@ class ProduitEmballe extends Produit implements IProduitEmballe{
 	@Override
 	public void setPrix(double prix) {
 		this.prix = prix;
+		System.out.println("prix brut de produit Emballe : " + this.prix);
 		
 	}
+	
+	@Override
+	public void setPrixKilo(double prixKilo) {
+		this.prixKilo = prix / poids;
+		System.out.println("prix calculé : " + this.prixKilo);
+		
+	}
+
 
 }

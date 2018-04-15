@@ -68,25 +68,42 @@ public class CreationProduitForm {
 		}
 		produit.setLibelle(libelle);
 		
-		//verif prix au kilo
-		if(radio.equals("prodemb")) {
-			produit.setPrixKilo(Double.parseDouble(prix) / Double.parseDouble(poids));
-		}else {
-			if(prixkilo != null)
-			produit.setPrixKilo((double)Math.round(Double.parseDouble(prixkilo)*100)/100);
-		}
-		
 		//verif poids
 		if(poids != null)
-		produit.setPoids((double)Math.round(Double.parseDouble(poids)*1000)/1000);
+			produit.setPoids((double)Math.round(Double.parseDouble(poids)*1000)/1000);
 		
-		//verif prix
-		if(radio.equals("prodvrac")) {
-			produit.setPrix(Double.parseDouble(prixkilo) * Double.parseDouble(poids));
-		}else {
+		if(radio.equals("prodemb")) {
+			
+			//verif prix
 			if(prix != null)
-			produit.setPrix((double)Math.round(Double.parseDouble(prix)*100)/100);
+				produit.setPrix((double)Math.round(Double.parseDouble(prix)*100)/100);
+			else
+				produit.setPrix(0);//Je ne sais pas vraiment à quoi ça sert, mais sans le else, ça n'envoit pas dans la base de données.
+			
+			//verif prix au kilo
+			if(prixkilo != null)
+				produit.setPrixKilo((double)Math.round(Double.parseDouble(prixkilo)*100)/100);
+			else
+				produit.setPrixKilo(0);//Je ne sais pas vraiment à quoi ça sert, mais sans le else, ça n'envoit pas dans la base de données.
+			
+		}else {
+			
+			//verif prix au kilo
+			if(prixkilo != null)
+				produit.setPrixKilo((double)Math.round(Double.parseDouble(prixkilo)*100)/100);
+			else
+				produit.setPrixKilo(0);//Je ne sais pas vraiment à quoi ça sert, mais sans le else, ça n'envoit pas dans la base de données.
+			
+			//verif prix
+			if(prix != null)
+				produit.setPrix((double)Math.round(Double.parseDouble(prix)*100)/100);
+			else
+				produit.setPrix(0);//Je ne sais pas vraiment à quoi ça sert, mais sans le else, ça n'envoit pas dans la base de données.
 		}
+		
+		
+		
+		
 		
 		//verif magasin
 		produit.setMagasin(Magasin.parseMagasin(magasin));
@@ -98,20 +115,15 @@ public class CreationProduitForm {
 	}
 	
 	private void validationLibelle(String libelle) throws Exception {
-		System.out.println("Passage dans la procédure de validation du libellé.");
 		if( libelle != null ) {
-			System.out.println("le libellé n'est pas null !");
 	        if ( libelle.length() < 3 ) {
-	        	System.out.println("le libellé contient moins de 3 caractères.");
 	            throw new Exception( "Le libellé doit contenir au moins 3 caract�res." );
 	        }
 	    }
 		else {
-			System.out.println("Le champ nom produit n'est pas renseigné." + libelle);
 	        throw new Exception( "Merci de saisir un nom de produit." );
 	    }
 		
-		System.out.println("Le produit est valide.");
 	}
 	
 	private void setErreur(String champ, String message) {

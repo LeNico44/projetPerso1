@@ -19,8 +19,16 @@ public class ProduitVrac extends Produit implements IProduitVrac {
 	}
 	
 	@Override
+	public void setPrixKilo(double prixKilo) {
+		this.prixKilo = prixKilo;
+		System.out.println("prix au Kilo de Produit vrac : " + this.prixKilo);
+		
+	}
+	
+	@Override
 	public void setPrix(double prix) {
-		// TODO Auto-generated method stub
+		this.prix = prixKilo * poids;
+		System.out.println("prix calculé : " + this.prix);
 		
 	}
 

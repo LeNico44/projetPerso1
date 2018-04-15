@@ -31,8 +31,8 @@ abstract class Produit implements IProduit {
 	@NotNull
 	private String libelle;
 	protected double prix;
-	private double prixKilo;
-	private double poids;
+	protected double prixKilo;
+	protected double poids;
 	
 	@Enumerated(EnumType.STRING)
 	private Magasin magasin;
@@ -67,9 +67,7 @@ abstract class Produit implements IProduit {
 		return prixKilo;
 	}
 
-	public void setPrixKilo(double prixKilo) {
-		this.prixKilo = prixKilo;
-	}
+	public abstract void setPrixKilo(double prixKilo);
 
 	public double getPoids() {
 		return poids;
