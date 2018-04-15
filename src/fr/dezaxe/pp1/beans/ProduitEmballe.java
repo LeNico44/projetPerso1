@@ -28,7 +28,7 @@ public class ProduitEmballe extends Produit implements IProduitEmballe{
 	@Override
 	public void setPrixKilo(double prixKilo) {
 		this.prixKilo = prix / poids;
-		System.out.println("prix calculé : " + this.prixKilo);
+		System.out.println("prix au kilo calculé : " + this.prixKilo);
 		
 	}
 

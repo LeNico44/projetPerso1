@@ -1,12 +1,19 @@
 package fr.dezaxe.pp1.servlets;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.dezaxe.pp1.beans.IProduit;
+import fr.dezaxe.pp1.dao.NoteEntityManager;
+import fr.dezaxe.pp1.dao.ProduitDAO;
+import fr.dezaxe.pp1.dao.ProduitDAOImpl;
 import fr.dezaxe.pp1.others.Constante;
 
 /**
@@ -31,7 +38,12 @@ public class AffichageProduit extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		menuActif(request);
 		//Affichage des produits
-
+		ProduitDAO produitDAOImpl = new ProduitDAOImpl();
+		List<IProduit> listeProduits = produitDAOImpl.listProduit();
+		
+		//ftp://java.developpez.com/thierry-leriche-dessirier/tutoriels/java/charger-donnees-mysql-jpa-15-min/charger-donnees-mysql-jpa-15-min.pdf
+		
+		
 		
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}

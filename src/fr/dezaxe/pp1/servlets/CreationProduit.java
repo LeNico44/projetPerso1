@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.dezaxe.pp1.beans.IProduit;
 import fr.dezaxe.pp1.beans.Loader;
+import fr.dezaxe.pp1.dao.NoteEntityManager;
+import fr.dezaxe.pp1.dao.ProduitDAO;
 import fr.dezaxe.pp1.enums.Magasin;
 import fr.dezaxe.pp1.forms.CreationProduitForm;
 import fr.dezaxe.pp1.others.Constante;
@@ -51,22 +53,18 @@ public class CreationProduit extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute(ATTR_ENUM_MAGASINS, Magasin.values());
 		
-		// Création du manager factory pour la base de données "projet_perso_1"  nommé ici "pp1".
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pp1");
-		EntityManager em = emf.createEntityManager();
-		
 		menuActif(request);
 		
-		// appelle à Cre&tionProduitForm
+		// appelle à CréationProduitForm
 		/*Préparation de l'objet form*/
 		CreationProduitForm form = new CreationProduitForm();
 		
 		/* Traitement de la requête et récupération du bean en résultant */
 		IProduit produit = form.creerProduit(request);
 		
-		em.getTransaction().begin();
-		em.persist(produit);
-		em.getTransaction().commit();
+		NoteEntityManager.getInstance().getEntityManager().getTransaction().begin();
+		NoteEntityManager.getInstance().getEntityManager().persist(produit);
+		NoteEntityManager.getInstance().getEntityManager().getTransaction().commit();
 
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
