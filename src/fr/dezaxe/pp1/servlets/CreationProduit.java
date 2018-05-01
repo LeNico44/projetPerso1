@@ -15,6 +15,7 @@ import fr.dezaxe.pp1.beans.IProduit;
 import fr.dezaxe.pp1.beans.Loader;
 import fr.dezaxe.pp1.dao.NoteEntityManager;
 import fr.dezaxe.pp1.dao.ProduitDAO;
+import fr.dezaxe.pp1.dao.ProduitDAOImpl;
 import fr.dezaxe.pp1.enums.Magasin;
 import fr.dezaxe.pp1.forms.CreationProduitForm;
 import fr.dezaxe.pp1.others.Constante;
@@ -27,6 +28,8 @@ public class CreationProduit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String ATTR_ENUM_MAGASINS = "enumMagasins";
 	private static final String VUE = "/WEB-INF/creationproduit.jsp";
+	
+	private ProduitDAO produitDAO = new ProduitDAOImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -62,9 +65,11 @@ public class CreationProduit extends HttpServlet {
 		/* Traitement de la requête et récupération du bean en résultant */
 		IProduit produit = form.creerProduit(request);
 		
-		NoteEntityManager.getInstance().getEntityManager().getTransaction().begin();
-		NoteEntityManager.getInstance().getEntityManager().persist(produit);
-		NoteEntityManager.getInstance().getEntityManager().getTransaction().commit();
+		produitDAO.creerProduit(produit);
+		
+//		NoteEntityManager.getInstance().getEntityManager().getTransaction().begin();
+//		NoteEntityManager.getInstance().getEntityManager().persist(produit);
+//		NoteEntityManager.getInstance().getEntityManager().getTransaction().commit();
 
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}

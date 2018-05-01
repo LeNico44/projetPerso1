@@ -3,6 +3,8 @@
  */
 package fr.dezaxe.pp1.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -22,7 +24,8 @@ import fr.dezaxe.pp1.enums.Magasin;
  */
 @Entity
 @Table(name="produit")
-abstract class Produit implements IProduit {
+public abstract class Produit implements IProduit {
+
 	@Id
 	@Column(name="a_id")
 	@GeneratedValue(strategy= GenerationType.AUTO)

@@ -41,6 +41,8 @@ public class AffichageProduit extends HttpServlet {
 		ProduitDAO produitDAOImpl = new ProduitDAOImpl();
 		List<IProduit> listeProduits = produitDAOImpl.listProduit();
 		
+		request.setAttribute("produits", listeProduits);
+		
 		//ftp://java.developpez.com/thierry-leriche-dessirier/tutoriels/java/charger-donnees-mysql-jpa-15-min/charger-donnees-mysql-jpa-15-min.pdf
 		
 		
