@@ -16,6 +16,8 @@
 					<th scope="col">Poids</th>
 					<th scope="col">Prix au kilo</th>
 					<th scope="col">Prix</th>
+					<th scope="col">En stock</th>
+					<th scope="col">Reste en Stock</th>
 					<th class="action">Action</th>
 				</tr>
 			</thead>
@@ -28,6 +30,11 @@
 					<td><c:out value="${produit.poids } kg"/></td>
 					<td><c:out value="${produit.prixKilo } €/kg"/></td>
 					<td><c:out value="${produit.prix } €"/></td>
+					<td>
+						<c:if test="${produit.stock }"><p style="color:olive;"><c:out value="OUI"/></p></c:if>
+						<c:if test="${produit.stock == false }"><p style="color:tomato;"><c:out value="NON"/></p></c:if>
+					</td>
+					<td><c:out value="${produit.reste } kg"/></td>
 					<td class="action"><a
 						href="<c:url value="/SuppressionProduit"><c:param name="id_produit" value="${ produit.id }" /></c:url>">
 							<span class="glyphicon glyphicon-trash" aria-hidden="true">supprimer !</span>

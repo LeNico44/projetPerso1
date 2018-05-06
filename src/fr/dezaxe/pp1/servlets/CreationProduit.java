@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.dezaxe.pp1.beans.BeanException;
 import fr.dezaxe.pp1.beans.IProduit;
 import fr.dezaxe.pp1.beans.Loader;
 import fr.dezaxe.pp1.dao.NoteEntityManager;
@@ -63,15 +64,39 @@ public class CreationProduit extends HttpServlet {
 		CreationProduitForm form = new CreationProduitForm();
 		
 		/* Traitement de la requête et récupération du bean en résultant */
-		IProduit produit = form.creerProduit(request);
+		IProduit produit;
 		
-		produitDAO.creerProduit(produit);
+		if(form.getErreurs().isEmpty()) {
+			try {
+				produit = form.creerProduit(request);
+				produitDAO.creerProduit(produit);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else {
+			
+		}
+//		try {
+//			produit = form.creerProduit(request);
+//			produitDAO.creerProduit(produit);
+//		} catch (BeanException e) {
+//			// TODO Auto-generated catch block
+//			request.setAttribute("erreur", e.getMessage());
+//		} catch (Exception r) {
+//			// TODO Auto-generated catch block
+//			request.setAttribute("erreurs", r.getMessage());
+//			r.printStackTrace();
+//		}
+		
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 		
 //		NoteEntityManager.getInstance().getEntityManager().getTransaction().begin();
 //		NoteEntityManager.getInstance().getEntityManager().persist(produit);
 //		NoteEntityManager.getInstance().getEntityManager().getTransaction().commit();
 
-		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		
 	}
 	
 	private void menuActif(HttpServletRequest request) {

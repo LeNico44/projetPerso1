@@ -29,7 +29,14 @@ public interface IProduit {
 	public double getPoids();
 	public void setPoids(double poids);
 	
+	public double getReste();
+	public void setReste(double reste);
+	
+	public boolean getStock();
+	public void setStock();
+	
 	public Magasin getMagasin();
 	public void setMagasin(Magasin magasin);
+	
 
 }

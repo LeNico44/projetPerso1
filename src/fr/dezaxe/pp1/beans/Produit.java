@@ -30,12 +30,15 @@ public abstract class Produit implements IProduit {
 	@Column(name="a_id")
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int id;
-	@Column(name="coucou", nullable=false)
+	@Column(name="libellule", nullable=false)
 	@NotNull
 	private String libelle;
 	protected double prix;
 	protected double prixKilo;
 	protected double poids;
+	protected double reste;
+	protected boolean stock;
+	
 	
 	@Enumerated(EnumType.STRING)
 	private Magasin magasin;
@@ -57,7 +60,9 @@ public abstract class Produit implements IProduit {
 	}
 
 	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+
+	this.libelle = libelle;
+		
 	}
 
 	public double getPrix() {
@@ -78,6 +83,28 @@ public abstract class Produit implements IProduit {
 
 	public void setPoids(double poids) {
 		this.poids = poids;
+	}
+	
+	public double getReste() {
+		return reste;
+	}
+	
+	public void setReste(double reste) {
+		this.reste = reste;
+	}
+	
+	public boolean getStock() {
+		return stock;
+	}
+	
+	public void setStock() {
+		if (reste > 0 ) {
+			System.out.println("truuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuue !!!!");
+			this.stock = true;
+		} else {
+			System.out.println("falllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllse !!!!");
+			this.stock = false;
+		}
 	}
 	
 	public Magasin getMagasin() {

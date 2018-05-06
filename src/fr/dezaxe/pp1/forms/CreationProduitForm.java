@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 import fr.dezaxe.pp1.beans.IProduit;
 import fr.dezaxe.pp1.beans.Loader;
 import fr.dezaxe.pp1.enums.Magasin;
@@ -24,10 +23,20 @@ public class CreationProduitForm {
 	private static final String CHAMP_POIDS = "poids";
 	private static final String CHAMP_PRIX = "prix";
 	private static final String CHAMP_MAGASIN = "magasin";
+	private static final String CHAMP_RESTE = "reste";
 	
 	//J'ai copier ces lignes, ça doit être pour gérer les erreurs mais ce n'est pas très clair dans ma tête !
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
+	private boolean chkErreur;
+	
+	public boolean isChkErreur() {
+		return chkErreur;
+	}
+	
+	public void setChkErreur(boolean chkErreur) {
+		this.chkErreur = chkErreur;
+	}
 	
 	public String getResultat() {
 		return resultat;
@@ -46,6 +55,7 @@ public class CreationProduitForm {
 		String poids = getValeurChamp(request, CHAMP_POIDS);
 		String prix = getValeurChamp(request, CHAMP_PRIX);
 		String magasin = getValeurChamp(request, CHAMP_MAGASIN);
+		String reste = getValeurChamp(request, CHAMP_RESTE);
 		
 		IProduit produit;
 		
@@ -61,8 +71,9 @@ public class CreationProduitForm {
 		
 		//verif libellé
 		try {
-			System.out.println("test le champ libelle");
+			System.out.println("PATATE !!!" + libelle);
 			validationLibelle(libelle);
+			
 		} catch (Exception e) {
 			setErreur(CHAMP_LIBELLE, e.getMessage());
 		}
@@ -108,21 +119,50 @@ public class CreationProduitForm {
 		//verif magasin
 		produit.setMagasin(Magasin.parseMagasin(magasin));
 		
+		
+		if(erreurs.isEmpty()) {
+			resultat = "Succès de la création !";
+			chkErreur = true;
+		}else {
+			resultat = "échec de la création !";
+			chkErreur = false;
+		}
+		
+		
+		
+		//Reste en stock
+		if(reste != null)
+			produit.setReste((double)Math.round(Double.parseDouble(reste)*1000)/1000);
+		else
+			produit.setReste(0);
+		
+		//Stock
+		produit.setStock();
+		
+		
 		return produit;
-		
-		
 		
 	}
 	
 	private void validationLibelle(String libelle) throws Exception {
-		if( libelle != null ) {
-	        if ( libelle.length() < 3 ) {
-	            throw new Exception( "Le libellé doit contenir au moins 3 caract�res." );
-	        }
-	    }
-		else {
-	        throw new Exception( "Merci de saisir un nom de produit." );
-	    }
+		
+		if(libelle != null) {
+			System.out.println("Coucou !!! ");
+			throw new Exception("Coucou !!! ");
+		}
+		
+//		System.out.println("validationLibelle");
+//		if( libelle != null ) {
+//			System.out.println("Libelle n'est pas vide !");
+//	        if ( libelle.length() < 3 ) {
+//	        	System.out.println("Libelle fait moins de trois caractères !");
+//	            throw new Exception( "Le libellé doit contenir au moins 3 caract�res." );
+//	        }
+//	    }
+//		else {
+//			System.out.println("Libelle est vide !");
+//	        throw new Exception( "Merci de saisir un nom de produit." );
+//	    }
 		
 	}
 	

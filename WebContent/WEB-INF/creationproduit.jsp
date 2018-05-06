@@ -9,8 +9,11 @@
 		<h1>Produit</h1>
 
 		<h2>Enregistrer un produit</h2>
-
-		<form name="formulaire" method="post">
+		
+		<c:if test="${ !empty erreur }"><p style="color:red;"><c:out value="${ erreur }"/></p></c:if>
+		
+		<form name="formulaire" method="post" action="Produit">
+			<label for="">Type de produit</label> 
 			<div class="form-group" onclick="clickradio()">
 				<div class="form-check">
 					<input class="form-check-input" type="radio" name="radioProduit" id="radio1" value="prodemb" checked>
@@ -47,8 +50,8 @@
       
 			<div class="form-group">
 				<label for="libelle">Nom du produit</label> 
-				<input type="text" class="form-control" id="libelle" name="libelle" placeholder="Produit">
-				<span class="erreur">${form.erreurs['libelle']}</span>
+				<input type="text" class="form-control" id="libelle" name="libelle" placeholder="Produit" value="<c:out value="${produit.libelle}"/>">
+				<span class="erreur">${ form.erreurs['libelle'] }</span>
 			</div>
 
 			<div class="form-group">
@@ -65,6 +68,11 @@
 				<label for="prix">Prix</label>
 				<input type="number" step="0.01" class="form-control" id="prix" name="prix" placeholder="0,00 €" >
 			</div>
+			
+			<div class="form-group">
+				<label for="reste">Reste en stock</label>
+				<input type="number" step="0.001" class="form-control" id="reste" name="reste" placeholder="0,000 kg">
+			</div>
 
 			<div class="form-group">
 				<label for="magasin">Magasin où acheter ce produit</label> <select
@@ -76,6 +84,7 @@
 			</div>
 			
 			<button type="submit" class="btn btn-primary">Enregistrer</button>
+			<p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
 		</form>
 	</div>
 	<c:import url="includes/scripts.jsp" />
