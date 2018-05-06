@@ -14,6 +14,11 @@ import javax.persistence.Table;
 @Table(name="produit")
 public class ProduitVrac extends Produit implements IProduitVrac {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ProduitVrac() {
 		// TODO Auto-generated constructor stub
 	}

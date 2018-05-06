@@ -16,4 +16,8 @@ public class Loader {
 	public static IProduitVrac creerProduitVrac() {
 		return new ProduitVrac();
 	}
+	
+	public static IRecette creerRecette() {
+		return new Recette();
+	}
 }

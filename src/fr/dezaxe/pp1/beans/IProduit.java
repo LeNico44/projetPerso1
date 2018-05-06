@@ -3,9 +3,6 @@
  */
 package fr.dezaxe.pp1.beans;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import fr.dezaxe.pp1.enums.Magasin;
 
 /**

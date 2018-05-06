@@ -12,6 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.sun.istack.internal.NotNull;
@@ -24,8 +26,12 @@ import fr.dezaxe.pp1.enums.Magasin;
  */
 @Entity
 @Table(name="produit")
-public abstract class Produit implements IProduit {
+public abstract class Produit implements IProduit, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="a_id")
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -42,6 +48,10 @@ public abstract class Produit implements IProduit {
 	
 	@Enumerated(EnumType.STRING)
 	private Magasin magasin;
+	
+	@ManyToOne
+	@JoinColumn(name="recette_id")
+	private Recette recette;
 	
 	protected Produit() {
 		

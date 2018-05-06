@@ -24,6 +24,14 @@
     <servlet-name>CreerProduit</servlet-name>
     <url-pattern>/creerproduit</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>CreerRecette</servlet-name>
+    <servlet-class>fr.dezaxe.pp1.servlets.CreationRecette</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreerRecette</servlet-name>
+    <url-pattern>/creerrecette</url-pattern>
+  </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>

@@ -1,6 +1,5 @@
 package fr.dezaxe.pp1.dao;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,7 +7,6 @@ import javax.persistence.Query;
 
 import fr.dezaxe.pp1.beans.IProduit;
 import fr.dezaxe.pp1.beans.Produit;
-import fr.dezaxe.pp1.forms.CreationProduitForm;
 
 
 public class ProduitDAOImpl implements ProduitDAO {
@@ -21,6 +19,7 @@ public class ProduitDAOImpl implements ProduitDAO {
 	@Override
 	public List<IProduit> listProduit() {
 		 Query query = em.createQuery("SELECT p FROM Produit p ");
+		 @SuppressWarnings("unchecked")
 		 List<IProduit> produits = query.getResultList();
 		 return produits;
 	}
